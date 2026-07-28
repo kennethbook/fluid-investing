@@ -171,7 +171,7 @@ export default function Home() {
                     </span>
                   </a>
                   <a
-                    href="https://www.ycombinator.com/launches/IJt-fluid-markets-exchange-to-invest-in-company-earnings"
+                    href="https://www.ycombinator.com/companies/fluid-markets"
                     target="_blank"
                     rel="noreferrer"
                     tabIndex={isOpen ? 0 : -1}
