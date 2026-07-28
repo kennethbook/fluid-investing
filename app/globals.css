@@ -1,0 +1,340 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #2b5260;
+  --blue: #76b4cf;
+  --paper: #fffdf8;
+  --frame: #8eafb6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.page {
+  width: 100%;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 28px;
+  background: var(--paper);
+  perspective: 1800px;
+}
+
+.face-frame {
+  position: absolute;
+  z-index: 10;
+  inset: clamp(14px, 2.4vw, 24px);
+  border: 2px solid var(--frame);
+  pointer-events: none;
+}
+
+.card-scene {
+  position: relative;
+  width: min(92vw, 720px, 68.64svh);
+  aspect-ratio: 0.78;
+  container-type: size;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+}
+
+.card {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 850ms cubic-bezier(0.22, 0.76, 0.22, 1);
+}
+
+.card-scene.is-open .card {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  backface-visibility: hidden;
+  border: 0;
+  background: var(--paper);
+  box-shadow:
+    0 24px 70px rgba(43, 82, 96, 0.16),
+    0 0 0 1px rgba(43, 82, 96, 0.14);
+}
+
+.card-front {
+  display: grid;
+  place-items: center;
+  padding: clamp(54px, 8vw, 110px);
+  cursor: pointer;
+  color: var(--ink);
+  font-family: inherit;
+}
+
+.front-content {
+  position: absolute;
+  top: calc(clamp(14px, 2.4vw, 24px) + 18px);
+  right: clamp(34px, 6vw, 64px);
+  bottom: calc(clamp(42px, 6vh, 68px) + 44px);
+  left: clamp(34px, 6vw, 64px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 1.4vh, 18px);
+}
+
+.front-logo {
+  display: block;
+  width: clamp(170px, 22vw, 250px);
+  height: clamp(170px, 22vw, 250px);
+  object-fit: contain;
+}
+
+.front-title {
+  display: block;
+  text-align: center;
+  font-size: clamp(34px, 5vw, 64px);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+.yc-badge {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(42px, 6vh, 68px);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transform: translateX(-50%);
+  color: #536f78;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(13px, 1.3vw, 15px);
+  white-space: nowrap;
+}
+
+.yc-mark,
+.linkedin-mark {
+  display: grid;
+  width: 27px;
+  height: 27px;
+  place-items: center;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.yc-mark {
+  background: #ff5a1f;
+}
+
+.linkedin-mark {
+  background: #0a66c2;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.card-front:focus-visible,
+.card-back:focus-visible,
+.letter-body a:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: -8px;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  overflow: hidden;
+  padding: 0;
+  cursor: pointer;
+}
+
+.back-scroll {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+  padding:
+    max(clamp(46px, 6cqh, 64px), env(safe-area-inset-top))
+    clamp(42px, 8cqw, 72px)
+    max(clamp(46px, 6cqh, 64px), env(safe-area-inset-bottom));
+}
+
+.letter-body {
+  width: min(100%, 570px);
+  margin: 0 auto;
+  font-size: 16px;
+  line-height: 1.48;
+  letter-spacing: -0.01em;
+}
+
+.letter-body p {
+  margin: 0 0 0.95em;
+}
+
+.letter-body a {
+  color: #3f788a;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: color 150ms ease;
+}
+
+.letter-body a:hover {
+  color: #18343e;
+}
+
+.signoff {
+  margin-top: 1.3em !important;
+  margin-bottom: 0 !important;
+}
+
+.archive-links {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  margin-top: 0.9em;
+}
+
+.archive-links a {
+  display: inline-flex;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: transform 150ms ease, opacity 150ms ease;
+}
+
+.archive-links a:hover {
+  transform: translateY(-2px);
+  opacity: 0.82;
+}
+
+.archive-links .yc-mark,
+.archive-links .linkedin-mark {
+  width: 1.55em;
+  height: 1.55em;
+  font-size: 0.95em;
+}
+
+@media (max-width: 620px) {
+  .page {
+    padding: 18px 14px;
+  }
+
+  .card-scene {
+    width: calc(100vw - 28px);
+    height: calc(100svh - 36px);
+    aspect-ratio: auto;
+  }
+
+  .face-frame {
+    inset: 12px;
+    border-width: 1.5px;
+  }
+
+  .card-front {
+    padding: 38px 28px;
+  }
+
+  .front-logo {
+    width: min(58vw, 230px);
+    height: min(58vw, 230px);
+  }
+
+  .front-content {
+    top: 32px;
+    right: 28px;
+    bottom: 84px;
+    left: 28px;
+  }
+
+  .front-title {
+    font-size: clamp(32px, 10vw, 46px);
+  }
+
+  .yc-badge {
+    bottom: 38px;
+  }
+
+  .back-scroll {
+    padding:
+      max(42px, env(safe-area-inset-top))
+      30px
+      max(42px, env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-height: 560px) and (orientation: landscape) {
+  .page {
+    padding: 14px;
+  }
+
+  .card-scene {
+    width: min(88vw, 680px);
+    height: calc(100svh - 28px);
+    aspect-ratio: auto;
+  }
+
+  .front-content {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .front-logo {
+    width: min(42vh, 210px);
+    height: min(42vh, 210px);
+  }
+
+  .front-title {
+    font-size: clamp(30px, 7vh, 48px);
+  }
+
+  .back-scroll {
+    padding: 34px clamp(42px, 8vw, 72px);
+  }
+
+  .letter-body {
+    line-height: 1.36;
+  }
+
+  .letter-body p {
+    margin-bottom: 0.55em;
+  }
+
+  .signoff {
+    margin-top: 0.8em !important;
+  }
+
+  .archive-links {
+    margin-top: 0.65em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+}
