@@ -106,7 +106,7 @@ export default function Home() {
 
                 <p>
                   Fluid Markets was the first company to attempt to build futures
-                  markets on public company key performance indicators. We set
+                  markets on public company KPIs. We set
                   out to give institutional investors a direct way to trade
                   their views on revenue, earnings, business segments, and
                   other fundamentals without taking broader equity market risk.
